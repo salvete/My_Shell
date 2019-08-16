@@ -1,8 +1,9 @@
-#include"headers.h"
+#include"headers.h" 
+#include"mypwd.h"
+#include"color.h"
 
 ino_t par_node()
-{
-	DIR *dir;
+{ DIR *dir;
 	struct dirent *direntp;
 
 	dir=opendir("..");
@@ -87,7 +88,8 @@ void show_info(ino_t current)
 	
 	chdir("..")	;
 	show_info(par);
-	printf("/%s",get_name(current));
+	printf(KGRN"/%s",get_name(current));
+	printf(KNRM);
 	chdir(get_name(current));
 
 }
