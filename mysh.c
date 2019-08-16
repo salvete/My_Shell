@@ -4,6 +4,7 @@
 #include"mypwd.h"
 #include"redir.h"
 #include"pipe.h"
+#include"color.h"
 
 //#define DEBUG
 
@@ -58,10 +59,18 @@ char *read_args(FILE *fp,char *prompt)
 
 void error_occur(char *msg)
 {
-	perror(msg);
-	
-	printf("exiting...\n");
+	char *p;
+	int len=strlen(msg)+strlen(KYEL);
+	p=(char*)malloc(len*sizeof(char) +1);
+		
+	strcpy(p,KYEL);
+	strcat(p,msg);
+	p[len] = '\0';
 
+	perror(p);
+	printf(KYEL"exiting...\n");
+
+	free(p);
 	exit(0);
 }
 
